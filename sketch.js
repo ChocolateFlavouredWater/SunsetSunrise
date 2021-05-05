@@ -6,7 +6,7 @@ const Constraint = Matter.Constraint;
 var engine, world;
 var backgroundImg;
 
-var background="sunrise1.png";
+var bg="sunrise1.png";
 
 function preload() {
     getBackgroundImg()
@@ -21,68 +21,66 @@ function setup(){
 
 function draw(){
 
+    // add condition to check if any background image is there to add
     if(backgroundImg){
     background(backgroundImg)
     }
 
     Engine.update(engine);
 
+    // write code to display time in correct format here
+    
+
 
 }
 
 async function getBackgroundImg(){
 
-    var response= await fetch("http://worldtimeapi.org/api/timezone/America/Los_Angeles")
+    // write code to fetch time from API
+    var response= await fetch("https://worldtimeapi.org/api/timezone/Asia/Kolkata")
    
     
+    //change the data in JSON format
     var responseJson= await response.json()
     console.log("Time",responseJson)
 
+    // write code slice the datetime
     var datetime= responseJson.datetime
     var hour=datetime.slice(11,13)
 
     console.log(hour)
 
 
+    // add conditions to change the background images from sunrise to sunset
     if(hour>=04&&hour<=06){
-        background="sunrise1.png"
-
+        bg="sunrise1.png"
     }else if(hour>=06&&hour<=08){
-        background="sunrise2.png"
-
+        bg="sunrise2.png"
     }else if(hour>=08&&hour<=10){
-        background="sunrise3.png"
-
+        bg="sunrise3.png"
     }else if(hour>=10&&hour<=12){
-        background="sunrise4.png"
-
+        bg="sunrise4.png"
     }else if(hour>=12&&hour<=14){
-        background="sunrise5.png"
-
+        bg="sunrise5.png"
     }else if(hour>=14&&hour<=16){
-        background="sunrise6.png"
-
+        bg="sunrise6.png"
     }else if(hour>=16&&hour<=18){
-        background="sunset7.png"
-
+        bg="sunset7.png"
     }else if(hour>=18&&hour<=20){
-        background="sunset8.png"
-
+        bg="sunset8.png"
     }else if(hour>=20&&hour<=22){
-        background="sunset9.png"
-
+        bg="sunset9.png"
     }else if(hour>=22&&hour<=24){
-        background="sunset10.png"
-
+        bg="sunset10.png"
     }else if(hour>=00&&hour<=03){
-        background="sunset12.png"
+        bg="sunset12.png"
     }
 
     
 
     //load the image in backgroundImg variable here
 
-    backgroundImg = loadImage(background);
+    backgroundImg = loadImage(bg);
     console.log(backgroundImg);
    
 
